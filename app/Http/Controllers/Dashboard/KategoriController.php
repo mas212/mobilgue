@@ -10,6 +10,10 @@ use App\Http\Requests\KategoriRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Responses\DataMaster\Kategori\IndexResponse;
 use App\Http\Responses\DataMaster\Kategori\CreateResponse;
+use App\Http\Responses\DataMaster\Kategori\StoreResponse;
+use App\Http\Responses\DataMaster\Kategori\EditResponse;
+use App\Http\Responses\DataMaster\Kategori\UpdateResponse;
+use App\Http\Responses\DataMaster\Kategori\DeleteResponse;
 
 class KategoriController extends Controller
 {
@@ -25,9 +29,7 @@ class KategoriController extends Controller
 
     public function store(KategoriRequest $request)
     {
-        
-        $kategori       = Kategori::create($request->all());
-        return redirect()->route('kategori.index');
+        return new StoreResponse;
     }
 
     public function show($id)
@@ -37,23 +39,16 @@ class KategoriController extends Controller
 
     public function edit($id)
     {
-        $kategori       = Kategori::findOrFail($id);
-        return view('dashboard.kategori.edit', [
-            'kategori'  => $kategori
-        ]);
+        return new EditResponse($id);
     }
 
     public function update(KategoriRequest $request, $id)
     {
-        $kategori       = Kategori::findOrFail($id);
-        $kategori->update($request->all());
-        return redirect()->route('kategori.index');   
+        return new UpdateResponse($id);   
     }
 
     public function destroy($id)
     {
-        $kategori       = Kategori::findOrFail($id);
-        $kategori->delete();
-        return redirect()->back();
+        return new DeleteResponse($id);
     }
 }
