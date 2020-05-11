@@ -3,27 +3,24 @@
 namespace App\Http\Controllers\Dashboard;
 
 use Redirect;
-use Validator;
 use App\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Requests\KategoriRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Responses\DataMaster\Kategori\IndexResponse;
+use App\Http\Responses\DataMaster\Kategori\CreateResponse;
 
 class KategoriController extends Controller
 {
-    protected $limit = 10;
     public function index()
     {
-        $kategoris          = Kategori::sort()->paginate($this->limit);
-        return view('dashboard.kategori.index',[
-            'kategoris'     => $kategoris
-        ]);
+        return new IndexResponse;
     }
 
     public function create()
     {
-        return view('dashboard.kategori.create');
+        return new CreateResponse;
     }
 
     public function store(KategoriRequest $request)
