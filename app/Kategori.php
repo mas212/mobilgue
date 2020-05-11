@@ -10,4 +10,8 @@ class Kategori extends Model
     protected $fillable = [
     	'nama'
     ];
+
+    public function scopeSort($query){
+    	return $query->orderBy('created_at', 'DESC');
+    }
 }

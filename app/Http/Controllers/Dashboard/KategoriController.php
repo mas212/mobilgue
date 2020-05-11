@@ -15,7 +15,7 @@ class KategoriController extends Controller
     protected $limit = 10;
     public function index()
     {
-        $kategoris          = Kategori::orderBy('created_at', 'DESC')->paginate($this->limit);
+        $kategoris          = Kategori::sort()->paginate($this->limit);
         return view('dashboard.kategori.index',[
             'kategoris'     => $kategoris
         ]);
