@@ -1,4 +1,13 @@
 
 seva.id fitur
 -----------------------
-- 
+- kategori
+- product
+- model
+- jenis kendaraan
+- tipe transaksi
+- kapasitas mesin
+- random product
+- gallery image
+- penawaran
+----------------------
